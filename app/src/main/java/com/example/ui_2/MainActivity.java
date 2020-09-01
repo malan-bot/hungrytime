@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-// HELLOOOOOOOOO
+// HELLOOOOOOOOO :)
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView txtHello;
