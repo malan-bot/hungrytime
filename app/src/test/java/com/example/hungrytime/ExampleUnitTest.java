@@ -1,4 +1,4 @@
-package com.example.ui_2;
+package com.example.hungrytime;
 
 import org.junit.Test;
 
