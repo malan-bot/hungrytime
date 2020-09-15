@@ -1,6 +1,7 @@
 package com.example.hungrytime;
 
 public class Ingredient {
+    //these types will most likely change
     private String description;
     private String metric;
     private String imageUrl;

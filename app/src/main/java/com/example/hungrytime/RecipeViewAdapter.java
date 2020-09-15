@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -35,13 +36,18 @@ public class RecipeViewAdapter extends RecyclerView.Adapter<RecipeViewAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecipeViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecipeViewAdapter.ViewHolder holder, final int position) {
         holder.recipeName.setText(recipes.get(position).getDescription());
+        holder.parent.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Toast.makeText(context, recipes.get(position).getDescription() + " Selected", Toast.LENGTH_SHORT).show();
+            }
+        });
         Glide.with(context)
                 .asBitmap()
                 .load(recipes.get(position).getImageUrl())
                 .into(holder.image);
-
 
     }
 
