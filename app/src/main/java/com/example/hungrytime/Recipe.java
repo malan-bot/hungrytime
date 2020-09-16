@@ -8,7 +8,7 @@ public class Recipe {
     private String description;
     private String imageUrl;
     private HashMap<String, ArrayList> ingredients;
-    private int likeCount;
+    private long likeCount;
     private ArrayList<String> tags;
 
 /*
@@ -20,10 +20,11 @@ public class Recipe {
     }
 
     //test 1
-    public Recipe(String description, String imageUrl, HashMap<String,ArrayList> ingredients){
+    public Recipe(String description, String imageUrl, HashMap<String,ArrayList> ingredients, long likeCount){
         this.description = description;
         this.imageUrl = imageUrl;
         this.ingredients = ingredients;
+        this.likeCount = likeCount;
     }
 
     public void setDescription(String description) {
@@ -49,7 +50,7 @@ public class Recipe {
     public Recipe(String description,
                   String imageUrl,
                   HashMap<String,ArrayList> ingredients,
-                  int likeCount,
+                  long likeCount,
                   ArrayList<String> tags){
 
         this.description = description;
@@ -78,7 +79,7 @@ public class Recipe {
     };
 
 
-    public int getLikeCount() {
+    public long getLikeCount() {
         return likeCount;
     }
 

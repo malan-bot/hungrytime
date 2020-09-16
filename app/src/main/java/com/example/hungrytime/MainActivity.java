@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, list.toString());
             }
         });
-
     }
 
     //TODO revise readData to create a complete Recipe object -- partially complete: likeCount & tags remain
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
     //TODO function to read Ingredient info --
 
     //TODO function to load ingredients into our Firestore db --
-
 
     private void readData(String item, final FirebaseCallback firebaseCallback){
         db.collection("Recipes").whereArrayContains("tags", item).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -91,9 +89,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                         Log.d(TAG, "ingredients hashmap: " + ingredients.toString());
 
-                        Recipe recipe = new Recipe((String)doc.get("Description"), (String)doc.get("Image"), ingredients);//,(HashMap<String,String[]>)doc.get("Ingredients"), (int) doc.get("likeCount"), (ArrayList<String>) doc.get("tags"));
-                        recipes.add(recipe);
 
+
+                        Recipe recipe = new Recipe((String)doc.get("Description"), (String)doc.get("Image"), ingredients, (long)doc.get("likeCount"),(ArrayList<String>)doc.get("tags"));//,(HashMap<String,String[]>)doc.get("Ingredients"), (int) doc.get("likeCount"), (ArrayList<String>) doc.get("tags"));
+                        recipes.add(recipe);
                     }
                     firebaseCallback.onCallback(recipes.toString());
                 }
