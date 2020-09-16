@@ -20,9 +20,10 @@ public class Recipe {
     }
 
     //test 1
-    public Recipe(String description, String imageUrl){
+    public Recipe(String description, String imageUrl, HashMap<String,ArrayList> ingredients){
         this.description = description;
         this.imageUrl = imageUrl;
+        this.ingredients = ingredients;
     }
 
     public void setDescription(String description) {
@@ -47,7 +48,7 @@ public class Recipe {
 
     public Recipe(String description,
                   String imageUrl,
-                  HashMap<String, ArrayList> ingredients,
+                  HashMap<String,ArrayList> ingredients,
                   int likeCount,
                   ArrayList<String> tags){
 

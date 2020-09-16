@@ -56,45 +56,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //TODO revise readData to create a complete Recipe object
+    //TODO revise readData to create a complete Recipe object -- partially complete: likeCount & tags remain
 
-    //TODO function to load recipes into our Firestore db
+    //TODO function to load recipes into our Firestore db --
 
-    //TODO function to read Ingredient info
+    //TODO function to read Ingredient info --
 
-    //TODO function to load ingredients into our Firestore db
-
-        /*
-        RecipeViewAdapter adapter = new RecipeViewAdapter(this);
-        adapter.setRecipes(fetchRecipe("Mimosa"));
-        recipeRecView.setAdapter(adapter);
-        recipeRecView.setLayoutManager(new GridLayoutManager(this, 2));
-*/
-    public ArrayList<Recipe> fetchRecipe(String item) {
-        db.collection("Recipes").whereArrayContains("tags", item).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d(TAG, document.getId() + " => " + document.getData());
-                            Map<String, Object> doc = document.getData();
-                            Recipe recipe = new Recipe((String)doc.get("Description"), (String)doc.get("Image")); //, (HashMap<String,String[]>)doc.get("Ingredients"), (int) doc.get("likeCount"), (ArrayList<String>) doc.get("tags"));
-                            Log.d(TAG, recipe.getDescription());
-                            Log.d(TAG, recipe.getImageUrl());
-
-                            recipes.add(recipe);
-                            Log.d(TAG, Integer.toString(recipes.size()));
-                    }
-                    Log.d(TAG, "exited for loop");
-
-                } else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
-                }
-                Log.d(TAG, "exited if clause");
-            }
-        });
-        return recipes;
-    }
+    //TODO function to load ingredients into our Firestore db --
 
 
     private void readData(String item, final FirebaseCallback firebaseCallback){
@@ -109,26 +77,23 @@ public class MainActivity extends AppCompatActivity {
                         ArrayList<HashMap<String, ArrayList>> fetchedIngredients = (ArrayList<HashMap<String, ArrayList>>)doc.get("Ingredients");
                         HashMap<String, ArrayList> ingredients = new HashMap<String, ArrayList>();
 
+                        //Parses through the fetched ingredients arraylist
                         for(HashMap<String, ArrayList> set : fetchedIngredients){
-
                             Iterator entries = set.entrySet().iterator();
                             while(entries.hasNext()) {
                                 Map.Entry entry = (Map.Entry) entries.next();
                                 String item = (String)entry.getValue();
                                 entry = (Map.Entry)entries.next();
                                 ArrayList qty = (ArrayList)entry.getValue();
-                                //String[] qtyStringArray = new String[2]{qty.get(0), qty.get(1)};
-
                                 ingredients.put(item, qty);
                                 Log.d(TAG, "key = " + item + ", value = " + qty.get(1) + " " + qty.get(0));
                             }
                         }
                         Log.d(TAG, "ingredients hashmap: " + ingredients.toString());
 
-
-                        Recipe recipe = new Recipe((String)doc.get("Description"), (String)doc.get("Image"));//,(HashMap<String,String[]>)doc.get("Ingredients"), (int) doc.get("likeCount"), (ArrayList<String>) doc.get("tags"));
+                        Recipe recipe = new Recipe((String)doc.get("Description"), (String)doc.get("Image"), ingredients);//,(HashMap<String,String[]>)doc.get("Ingredients"), (int) doc.get("likeCount"), (ArrayList<String>) doc.get("tags"));
                         recipes.add(recipe);
-                        Log.d(TAG, recipe.toString());
+
                     }
                     firebaseCallback.onCallback(recipes.toString());
                 }
