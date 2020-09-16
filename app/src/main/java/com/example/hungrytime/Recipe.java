@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class Recipe {
     private String description;
     private String imageUrl;
-    private HashMap<String, String[]> ingredients;
+    private HashMap<String, ArrayList> ingredients;
     private int likeCount;
     private ArrayList<String> tags;
 
@@ -33,7 +33,7 @@ public class Recipe {
         this.imageUrl = imageUrl;
     }
 
-    public void setIngredients(HashMap<String, String[]> ingredients) {
+    public void setIngredients(HashMap<String, ArrayList> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -47,7 +47,7 @@ public class Recipe {
 
     public Recipe(String description,
                   String imageUrl,
-                  HashMap<String, String[]> ingredients,
+                  HashMap<String, ArrayList> ingredients,
                   int likeCount,
                   ArrayList<String> tags){
 
@@ -86,4 +86,14 @@ public class Recipe {
     }
 
 
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", ingredients=" + ingredients +
+                ", likeCount=" + likeCount +
+                ", tags=" + tags +
+                '}';
+    }
 }

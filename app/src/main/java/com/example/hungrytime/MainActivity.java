@@ -23,6 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -45,19 +46,24 @@ public class MainActivity extends AppCompatActivity {
         recipeRecView = findViewById(R.id.recipeRecView);
         adapter = new RecipeViewAdapter(this);
         recipes = new ArrayList<Recipe>();
-        recipes.add(new Recipe("recipe 1", "url"));
 
-        readData("Mimosa", new FirebaseCallback() {
+        readData("Alcohol", new FirebaseCallback() {
             @Override
             public void onCallback(String list) {
                 Log.d(TAG, list.toString());
             }
         });
 
-
-
-
     }
+
+    //TODO revise readData to create a complete Recipe object
+
+    //TODO function to load recipes into our Firestore db
+
+    //TODO function to read Ingredient info
+
+    //TODO function to load ingredients into our Firestore db
+
         /*
         RecipeViewAdapter adapter = new RecipeViewAdapter(this);
         adapter.setRecipes(fetchRecipe("Mimosa"));
@@ -94,14 +100,35 @@ public class MainActivity extends AppCompatActivity {
     private void readData(String item, final FirebaseCallback firebaseCallback){
         db.collection("Recipes").whereArrayContains("tags", item).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
+            public void onComplete(@NonNull Task<QuerySnapshot> task) { if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d(TAG, document.getId() + " => " + document.getData());
+                        Log.d(TAG, document.getId() + " => " + document.getData().get("Ingredients").getClass());
 
                         Map<String, Object> doc = document.getData();
-                        Recipe recipe = new Recipe((String)doc.get("Description"), (String)doc.get("Image")); //, (HashMap<String,String[]>)doc.get("Ingredients"), (int) doc.get("likeCount"), (ArrayList<String>) doc.get("tags"));
+                        ArrayList<HashMap<String, ArrayList>> fetchedIngredients = (ArrayList<HashMap<String, ArrayList>>)doc.get("Ingredients");
+                        HashMap<String, ArrayList> ingredients = new HashMap<String, ArrayList>();
+
+                        for(HashMap<String, ArrayList> set : fetchedIngredients){
+
+                            Iterator entries = set.entrySet().iterator();
+                            while(entries.hasNext()) {
+                                Map.Entry entry = (Map.Entry) entries.next();
+                                String item = (String)entry.getValue();
+                                entry = (Map.Entry)entries.next();
+                                ArrayList qty = (ArrayList)entry.getValue();
+                                //String[] qtyStringArray = new String[2]{qty.get(0), qty.get(1)};
+
+                                ingredients.put(item, qty);
+                                Log.d(TAG, "key = " + item + ", value = " + qty.get(1) + " " + qty.get(0));
+                            }
+                        }
+                        Log.d(TAG, "ingredients hashmap: " + ingredients.toString());
+
+
+                        Recipe recipe = new Recipe((String)doc.get("Description"), (String)doc.get("Image"));//,(HashMap<String,String[]>)doc.get("Ingredients"), (int) doc.get("likeCount"), (ArrayList<String>) doc.get("tags"));
                         recipes.add(recipe);
+                        Log.d(TAG, recipe.toString());
                     }
                     firebaseCallback.onCallback(recipes.toString());
                 }
@@ -111,8 +138,6 @@ public class MainActivity extends AppCompatActivity {
                 recipeRecView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
             }
         });
-
-
     }
 
     private interface FirebaseCallback{
@@ -123,39 +148,3 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
-        /*
-        db.collection("cities")
-        .whereEqualTo("capital", true)
-        .get()
-        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d(TAG, document.getId() + " => " + document.getData());
-                    }
-                } else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
-                }
-            }
-        });
-DocSnippets.java
-
-         */
-
-
-        /*
-        mDocRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>(){
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot){
-                if(documentSnapshot.exists()){
-                    Recipe recipe = documentSnapshot.toObject(Recipe.class);
-                    Log.d(TAG, "recipe added to recipes");
-                    recipes.add(recipe);
-                }
-                else{
-                    Log.d(TAG, "Error getting recipes");
-                }
-            }
-        });
-    }*/
