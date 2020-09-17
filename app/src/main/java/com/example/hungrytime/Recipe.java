@@ -19,13 +19,6 @@ public class Recipe {
         //no args: this is for .toObject <FireStore method>
     }
 
-    //test 1
-    public Recipe(String description, String imageUrl, HashMap<String,ArrayList> ingredients, long likeCount){
-        this.description = description;
-        this.imageUrl = imageUrl;
-        this.ingredients = ingredients;
-        this.likeCount = likeCount;
-    }
 
     public void setDescription(String description) {
         this.description = description;
@@ -46,6 +39,9 @@ public class Recipe {
     public void setTags(ArrayList<String> tags) {
         this.tags = tags;
     }
+
+
+
 
     public Recipe(String description,
                   String imageUrl,

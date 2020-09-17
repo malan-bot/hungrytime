@@ -6,6 +6,8 @@ public class Ingredient {
     private String metric;
     private String imageUrl;
 
+
+    //fetch constructor
     public Ingredient(String description, String imageUrl){
         this.description = description;
         this.imageUrl = imageUrl;
