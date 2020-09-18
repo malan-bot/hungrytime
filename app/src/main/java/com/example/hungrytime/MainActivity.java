@@ -51,12 +51,10 @@ public class MainActivity extends AppCompatActivity {
         recipes = new ArrayList<Recipe>();
 
         //example: creating a new recipe & loading it into the Recipes collection
-        ArrayList<HashMap<String, Object>> newRecipe = new ArrayList<HashMap<String, Object>>();
-        ArrayList<String> newTags = new ArrayList<String>(Arrays.asList("Lemon", "Drink", "No Sugar"));
         ArrayList ingredients = new ArrayList();
         ingredients.add(c("Water", "cup", "1"));
         ingredients.add(c("Lemon", "wedge", "1"));
-        loadNewRecipe("Lemon water", "https://", ingredients, 0, newTags);
+        loadNewRecipe("Lemon water", "https://firebasestorage.googleapis.com/v0/b/hungrytime-db.appspot.com/o/Lemon%20Water.png?alt=media&token=03289b00-04cc-4b4f-adea-37f40da7f3d3", ingredients, 0, createTags("Lemon", "Drink", "No Sugar", "Detox"));
 
         //Searching through the Recipes collection. First param = item = Recipe tag to search for, e.g: alcohol
         readRecipesByTag("Alcohol", new FirebaseCallback() {
@@ -65,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, list.toString());
             }
         });
+    }
+
+    //creates tag arraylist
+    private ArrayList<String> createTags(String... tags){
+        ArrayList<String> tagArray = new ArrayList<String>();
+        for(String tag : tags){
+            tagArray.add(tag);
+        }
+        return tagArray;
     }
 
     //Helper function to easily create ingredient arrays
