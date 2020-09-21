@@ -1,6 +1,8 @@
 package com.example.hungrytime;
 
 
+import android.provider.ContactsContract;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,10 +13,44 @@ public class Recipe {
     private long likeCount;
     private ArrayList<String> tags;
 
+
+    /*
+            Schedule:  HashMap<Date, ArrayList<Recipe>>
+
+                                        [ {description, ingredients, imageUrl, likeCount, tags}, { desc..} ]
+
+                                        for {Recipe recipe : recipes){
+                                            new arraylist<Ingredient, metric, qty>
+                                            HashMap<String, Arraylist> = .getIngredients()
+                                            for( each set : hashmap){
+                                                IF{
+                                                     arrayList.contains(set.get(Item))
+                                                     add(qty)
+                                                     }
+                                                else{
+                                                    arrayList.add(new ingredient, qty);
+                                                }
+                                           }
+
+                                           loadIngredientImages(){
+                                                for each item in shopping:
+                                                    doc = ingredientscollection = .get(
+
+
+
+
+
+
+
+
+
+     */
+
+
+
 /*
         Important: toObject will create a class from the fetched document so long as the attributes/fields make sense..
  */
-
     public Recipe(){
         //no args: this is for .toObject <FireStore method>
     }
