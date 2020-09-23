@@ -16,15 +16,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recipeRecView;
-    //Recipes are loaded into here
-    public static ArrayList<Recipe> recipes;
-    //TAG's used for Logcat logs
     public final String TAG = "Recipes";
-    public static RecipeViewAdapter adapter;
-
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference recipeRef = db.collection("Recipes");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +24,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-/*      RECIPE SEARCH DEMO
+        /*      RECIPE SEARCH DEMO
 
-         RecipeView recipeView = new RecipeView((RecyclerView) findViewById(R.id.recipeRecView), this);
-
+        RecipeView recipeView = new RecipeView((RecyclerView) findViewById(R.id.recipeRecView), this);
         recipeView.readRecipesByTag("Alcohol", new RecipeView.FirebaseCallback() {
             @Override
             public void onCallback(String list) {
