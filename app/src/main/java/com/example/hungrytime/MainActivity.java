@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         });
         */
 
-        /*  SCHEDULE & SHOPPING LIST DEMO
+   //     /*  SCHEDULE & SHOPPING LIST DEMO
 
         Schedule schedule = new Schedule();
         Recipe recipe1 = new Recipe("Recipe1", createIngredient("Ingredient1", "g", "1"));
@@ -51,9 +51,8 @@ public class MainActivity extends AppCompatActivity {
         ShoppingList shoplist = new ShoppingList(schedule);
         //Log.d(TAG, shoplist.getSchedule().toString());
 
-        shoplist.processSchedule();
         Log.d(TAG, shoplist.getShoppingList().toString());
-        */
+   //     */
 
     }
 
