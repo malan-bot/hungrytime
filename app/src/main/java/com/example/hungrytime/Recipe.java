@@ -13,48 +13,18 @@ public class Recipe {
     private long likeCount;
     private ArrayList<String> tags;
 
+    public Recipe(String description,
+                  String imageUrl,
+                  HashMap<String,ArrayList> ingredients,
+                  long likeCount,
+                  ArrayList<String> tags){
 
-    /*
-            Schedule:  HashMap<Date, ArrayList<Recipe>>
-
-                                        [ {description, ingredients, imageUrl, likeCount, tags}, { desc..} ]
-
-                                        for {Recipe recipe : recipes){
-                                            new arraylist<Ingredient, metric, qty>
-                                            HashMap<String, Arraylist> = .getIngredients()
-                                            for( each set : hashmap){
-                                                IF{
-                                                     arrayList.contains(set.get(Item))
-                                                     add(qty)
-                                                     }
-                                                else{
-                                                    arrayList.add(new ingredient, qty);
-                                                }
-                                           }
-
-                                           loadIngredientImages(){
-                                                for each item in shopping:
-                                                    doc = ingredientscollection = .get(
-
-
-
-
-
-
-
-
-
-     */
-
-
-
-/*
-        Important: toObject will create a class from the fetched document so long as the attributes/fields make sense..
- */
-    public Recipe(){
-        //no args: this is for .toObject <FireStore method>
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.ingredients = ingredients;
+        this.likeCount = likeCount;
+        this.tags = tags;
     }
-
 
     public void setDescription(String description) {
         this.description = description;
@@ -76,21 +46,17 @@ public class Recipe {
         this.tags = tags;
     }
 
-
-
-
-    public Recipe(String description,
-                  String imageUrl,
-                  HashMap<String,ArrayList> ingredients,
-                  long likeCount,
-                  ArrayList<String> tags){
-
+    //test constructor 1
+    public Recipe(String description){
         this.description = description;
-        this.imageUrl = imageUrl;
-        this.ingredients = ingredients;
-        this.likeCount = likeCount;
-        this.tags = tags;
     }
+
+    //test constructor 2
+    public Recipe(String description, HashMap<String, ArrayList> ingredients){
+        this.description = description;
+        this.ingredients = ingredients;
+    }
+
 
     public String getDescription() {
         return description;
@@ -105,9 +71,8 @@ public class Recipe {
 
     //note: switch(metric)
     //          case cup: don't parseInt
-    public ArrayList<HashMap<Ingredient, String>> getIngredients(){
-
-        return null;
+    public HashMap<String, ArrayList> getIngredients(){
+        return ingredients;
     };
 
 
