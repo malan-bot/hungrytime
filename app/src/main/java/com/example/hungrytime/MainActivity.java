@@ -10,6 +10,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,16 +31,41 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecipeView recipeView = new RecipeView((RecyclerView) findViewById(R.id.recipeRecView), this);
 
-        recipeView.readRecipesByTag("Juice", new RecipeView.FirebaseCallback() {
+/*      RECIPE SEARCH DEMO
+
+         RecipeView recipeView = new RecipeView((RecyclerView) findViewById(R.id.recipeRecView), this);
+
+        recipeView.readRecipesByTag("Alcohol", new RecipeView.FirebaseCallback() {
             @Override
             public void onCallback(String list) {
                 Log.d(TAG, list.toString());
             }
         });
+        */
+
+        /*  SCHEDULE & SHOPPING LIST DEMO
+
+        Schedule schedule = new Schedule();
+        Recipe recipe1 = new Recipe("Recipe1", createIngredient("Ingredient1", "g", "1"));
+        Recipe recipe2 = new Recipe("Recipe2", createIngredient("Ingredient2", "g", "2"));
+        recipe1.getIngredients().put("Ingredient2", new ArrayList<>(Arrays.asList("kg", "5")));
+
+        schedule.insertRecipe("Monday", recipe1);
+        schedule.insertRecipe("Monday", recipe2);
+        schedule.insertRecipe("Monday", recipe1);
+        schedule.insertRecipe("Tuesday", recipe1);
+        Log.d(TAG, schedule.getSchedule().toString());
+
+        ShoppingList shoplist = new ShoppingList(schedule);
+        //Log.d(TAG, shoplist.getSchedule().toString());
+
+        shoplist.processSchedule();
+        Log.d(TAG, shoplist.getShoppingList().toString());
+        */
+
     }
-}
+
 
 /*
         ArrayList ing1 = new ArrayList();
@@ -76,4 +104,14 @@ public class MainActivity extends AppCompatActivity {
         ing4.add(recipeView.c("", "", ""));
         ing4.add(recipeView.c("", "", ""));
         recipeView.loadNewRecipe("", "", ing4, 0, recipeView.createTags());
-           */
+*/
+
+    //Helper function to easily create ingredient arrays
+    public HashMap<String, ArrayList> createIngredient(String name, String metric, String qty) {
+        HashMap<String, ArrayList> ingredient = new HashMap<String, ArrayList>();
+        ingredient.put(name, new ArrayList<>(Arrays.asList(metric, qty)));
+        return ingredient;
+
+    }
+}
+
