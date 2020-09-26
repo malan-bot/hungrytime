@@ -31,7 +31,6 @@ public class RecipeView {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference recipeRef = db.collection("Recipes");
 
-
     public RecipeView(RecyclerView view, Context context) {
         this.context = context;
         recipeRecyclerView = view;
@@ -74,13 +73,13 @@ public class RecipeView {
         recipeRef.document(name).set(recipe);
     }
 
-    public void readRecipesByTag(String item, final FirebaseCallback firebaseCallback){
+    public void readRecipesByTag(String item){
 
         recipeRef.whereArrayContains("tags", item).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) { if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    Log.d(TAG, document.getId() + " => " + document.getData());
+                    //Log.d(TAG, document.getId() + " => " + document.getData());
 
                     //fetched recipe  stored here
                     Map<String, Object> doc = document.getData();
@@ -100,12 +99,9 @@ public class RecipeView {
                             ingredients.put(item, qty);
                         }
                     }
-                    Log.d(TAG, "ingredients hashmap: " + ingredients.toString());
-
                     Recipe recipe = new Recipe((String) doc.get("Description"), (String) doc.get("Image"), ingredients, (long) doc.get("likeCount"), (ArrayList<String>) doc.get("tags"));
                     recipes.add(recipe);
                 }
-                firebaseCallback.onCallback(recipes.toString());
             }
                 adapter.setRecipes(recipes);
                 recipeRecyclerView.setAdapter(adapter);
@@ -114,9 +110,6 @@ public class RecipeView {
         });
     }
 
-    public interface FirebaseCallback{
-        void onCallback(String recipe);
-    }
 
 
 

@@ -1,43 +1,43 @@
 package com.example.hungrytime;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     public final String TAG = "Recipes";
+
+    public String search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         /*      RECIPE SEARCH DEMO
 
         RecipeView recipeView = new RecipeView((RecyclerView) findViewById(R.id.recipeRecView), this);
-        recipeView.readRecipesByTag("Alcohol", new RecipeView.FirebaseCallback() {
-            @Override
-            public void onCallback(String list) {
-                Log.d(TAG, list.toString());
-            }
-        });
+        recipeView.readRecipesByTag(search);
         */
 
-   //     /*  SCHEDULE & SHOPPING LIST DEMO
+    /*      HOw to move from one intent to another??
+            New intent = new Intent(search, ResultsActivity.class);
+            //change the search field
+            context.startActivity(intent);
+     */
 
+
+        /*  SCHEDULE & SHOPPING LIST DEMO
+        
         Schedule schedule = new Schedule();
+
         Recipe recipe1 = new Recipe("Recipe1", createIngredient("Ingredient1", "g", "1"));
         Recipe recipe2 = new Recipe("Recipe2", createIngredient("Ingredient2", "g", "2"));
         recipe1.getIngredients().put("Ingredient2", new ArrayList<>(Arrays.asList("kg", "5")));
@@ -49,12 +49,43 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, schedule.getSchedule().toString());
 
         ShoppingList shoplist = new ShoppingList(schedule);
-        //Log.d(TAG, shoplist.getSchedule().toString());
 
         Log.d(TAG, shoplist.getShoppingList().toString());
-   //     */
+
+        Log.d(TAG, schedule.getScheduleArray().toString());
+
+        //Testing Juwons schedule parser
+        for(int i = 0; i < 6; i++) {
+            Log.d(TAG, getDay(schedule.getScheduleArray(), i));
+            Log.d(TAG, getRecipes(schedule.getScheduleArray(),i ));
+            Log.d(TAG, "-");
+        }
+        */
 
     }
+
+
+    public String getDay(ArrayList<HashMap<String, ArrayList<Recipe>>> scheduleArray, int position){
+        ArrayList<HashMap<String, ArrayList<Recipe>>> schedule = scheduleArray;
+
+        String day = "";
+        for(String key : schedule.get(position).keySet()){
+            day = key;
+        }
+        return day + ": ";
+    }
+
+    public String getRecipes(ArrayList<HashMap<String, ArrayList<Recipe>>> scheduleArray, int position){
+        String recipesString = "";
+        for(String key : scheduleArray.get(position).keySet()){
+            ArrayList<Recipe> recipes = scheduleArray.get(position).get(key);
+            for(Recipe recipe : recipes){
+                recipesString += recipe.getDescription() + " ";
+            }
+        }
+        return recipesString;
+    }
+
 
 
 /*
