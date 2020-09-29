@@ -3,6 +3,7 @@ package com.example.hungrytime;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -44,13 +45,17 @@ public class Schedule {
         return this.schedule;
     }
 
-    //This is to help Juwon iterate through each key in her OnBindViewHolder as position is always an int starting from 0 ??
+    //Based on what Juwon's shown me, this should work.
+    public ArrayList<Day> getScheduleInDays() {
+        String[] daysInAWeek = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        ArrayList<Day> daysArray = new ArrayList<Day>();
 
-    public ArrayList<HashMap<String, ArrayList<Recipe>>> getScheduleArray(){
-        ArrayList<HashMap<String, ArrayList<Recipe>>> scheduleArray = new ArrayList<HashMap<String, ArrayList<Recipe>>>();
+        for (int i = 0; i < 7; i++) {
+            daysArray.add(new Day(daysInAWeek[i]));
+        }
 
         Iterator days = this.schedule.entrySet().iterator();
-        while(days.hasNext()) {
+        while (days.hasNext()) {
             final Map.Entry day = (Map.Entry) days.next();
 
             ArrayList<Recipe> scheduledRecipes = new ArrayList<Recipe>();
@@ -60,17 +65,36 @@ public class Schedule {
                 scheduledRecipes.add((Recipe) recipe.getValue());
             }
 
-            final ArrayList<Recipe> completeScheduleOfRecipes = scheduledRecipes;
-            scheduleArray.add(new HashMap<String, ArrayList<Recipe>>() {{
-                put((String) day.getKey(), (ArrayList<Recipe>) completeScheduleOfRecipes);
-            }});
+            int daysArrayIndex = getDayIndex((String) day.getKey());
+            daysArray.get(getDayIndex((String)day.getKey())).setRecipes(scheduledRecipes);
         }
-        return scheduleArray;
+
+        return daysArray;
     }
 
+    public int getDayIndex(String day) {
+        switch (day) {
+            case "Monday":
+                return 0;
+            case "Tuesday":
+                return 1;
+            case "Wednesday":
+                return 2;
+            case "Thursday":
+                return 3;
+            case "Friday":
+                return 4;
+            case "Saturday":
+                return 5;
+            case "Sunday":
+                return 6;
+            default:
+                Log.d("Schedule: ", "getDayIndex error");
+                return 8;
+        }
 
+    }
 
-    //public method for getting
 
 
 
