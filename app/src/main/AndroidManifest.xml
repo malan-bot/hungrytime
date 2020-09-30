@@ -16,9 +16,15 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".UpdateProfile" />
         <activity android:name=".UpdateEmail" />
-        <activity android:name=".SplashScreen" />
         <activity android:name=".RegistrationActivity" />
+        <!--To Run Mohammed's code, please copy + paste the following two tags in-place of the two tags above.
+            <activity android:name=".MainActivity"/>
+            <activity android:name=".SplashScreen"> -->
+        <activity android:name=".SplashScreen"/>
         <activity android:name=".MainActivity">
+        <!--To Test Juwon & Malan's code, please copy + paste the following two tags in-place of the two tags above..
+            <activity android:name=".SplashScreen"/>
+            <activity android:name=".MainActivity"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

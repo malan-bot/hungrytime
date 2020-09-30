@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
     public final String TAG = "Recipes";
 
-    public String search;
     RecyclerView recyclerView;
 
     @Override
@@ -23,13 +22,71 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //this recycler view is used by both Juwon & Malan's activities.
+        recyclerView = findViewById(R.id.recyclerView);
+
+
+        /*to Test Malan's Activity.. please run the following block of code:
+        //Some tags you may want to try: Alcohol, Juice, Smoothie, Pineapple, Banana, Coconut, Dairy Free.
+        RecipeView recipeView = new RecipeView(recyclerView, this);
+        recipeView.readRecipesByTag("Alcohol");
+        //*/
+
+       //*To test Juwons Activity.. Please run this code:
         Schedule schedule = initScheduleData();
         initRecyclerView(schedule.getScheduleInDays());
+        //*/
+    }
+
+    //We've been using this commented block to load recipes into our DB.
+    /*      ArrayList ing1 = new ArrayList();
+            ing1.add(recipeView.c("", "", ""));
+            ing1.add(recipeView.c("", "", ""));
+            ing1.add(recipeView.c("", "", ""));
+            ing1.add(recipeView.c("", "", ""));
+            ing1.add(recipeView.c("", "", ""));
+            ing1.add(recipeView.c("", "", ""));
+            recipeView.loadNewRecipe("", "", ing1, 0, recipeView.createTags());
+
+
+            ArrayList ing2 = new ArrayList();
+            ing2.add(recipeView.c("", "", ""));
+            ing2.add(recipeView.c("", "", ""));
+            ing2.add(recipeView.c("", "", ""));
+            ing2.add(recipeView.c("", "", ""));
+            ing2.add(recipeView.c("", "", ""));
+            ing2.add(recipeView.c("", "", ""));
+            recipeView.loadNewRecipe("", "", ing2, 0, recipeView.createTags());
+
+            ArrayList ing3 = new ArrayList();
+            ing3.add(recipeView.c("", "", ""));
+            ing3.add(recipeView.c("", "", ""));
+            ing3.add(recipeView.c("", "", ""));
+            ing3.add(recipeView.c("", "", ""));
+            ing3.add(recipeView.c("", "", ""));
+            ing3.add(recipeView.c("", "", ""));
+            recipeView.loadNewRecipe("", "", ing3, 0, recipeView.createTags());
+
+            ArrayList ing4 = new ArrayList();
+            ing4.add(recipeView.c("", "", ""));
+            ing4.add(recipeView.c("", "", ""));
+            ing4.add(recipeView.c("", "", ""));
+            ing4.add(recipeView.c("", "", ""));
+            ing4.add(recipeView.c("", "", ""));
+            ing4.add(recipeView.c("", "", ""));
+            recipeView.loadNewRecipe("", "", ing4, 0, recipeView.createTags());
+    */
+
+
+    //Helper function to easily create ingredient arrays
+    public HashMap<String, ArrayList> createIngredient(String name, String metric, String qty) {
+        HashMap<String, ArrayList> ingredient = new HashMap<String, ArrayList>();
+        ingredient.put(name, new ArrayList<>(Arrays.asList(metric, qty)));
+        return ingredient;
 
     }
 
     private void initRecyclerView(ArrayList<Day> schedule) {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         ScheduleAdapter scheduleAdapter = new ScheduleAdapter(schedule);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(scheduleAdapter);
@@ -38,11 +95,11 @@ public class MainActivity extends AppCompatActivity {
     public Schedule initScheduleData(){
         Schedule schedule = new Schedule();
 
-        String[] monday = new String[]{"3/4 cup corn flakes, 1 banana, 1 cup milk in a bowl", "Teriyaki salmon don", "Butter chicken curry, 0.5 bowl of rice, vege"};
-        String[] tuesday = new String[]{"1 cup strawberry and banana smoothie", "BBQ pork on rice", "Pasta with tomato sauce", "1 energy bar"};
+        String[] monday = new String[]{"A bowl of cereal", "Teriyaki salmon don", "Butter chicken on Rice"};
+        String[] tuesday = new String[]{"Strawberry and banana smoothie", "BBQ pork on rice", "Pasta with Tomatoes", "Homemade energy bar"};
         String[] wednesday = new String[]{""};
         String[] thursday = new String[]{""};
-        String[] friday = new String[]{"1 bowl of cereal and kiwifruits", "Pelmeni", "Shakshuka with pita pocket"};
+        String[] friday = new String[]{"Kiwifruit on cereal", "Pelmeni", "Shakshuka"};
         String[] saturday = new String[]{""};
         String[] sunday = new String[]{""};
 
@@ -91,74 +148,7 @@ public class MainActivity extends AppCompatActivity {
         } return schedule;
     }
 
-    public String getDay(ArrayList<HashMap<String, ArrayList<Recipe>>> scheduleArray, int position){
-        ArrayList<HashMap<String, ArrayList<Recipe>>> schedule = scheduleArray;
-
-        String day = "";
-        for(String key : schedule.get(position).keySet()){
-            day = key;
-        }
-        return day + ": ";
-    }
-
-    public String getRecipes(ArrayList<HashMap<String, ArrayList<Recipe>>> scheduleArray, int position){
-        String recipesString = "";
-        for(String key : scheduleArray.get(position).keySet()){
-            ArrayList<Recipe> recipes = scheduleArray.get(position).get(key);
-            for(Recipe recipe : recipes){
-                recipesString += recipe.getDescription() + " ";
-            }
-        }
-        return recipesString;
-    }
 
 
-
-/*
-        ArrayList ing1 = new ArrayList();
-        ing1.add(recipeView.c("", "", ""));
-        ing1.add(recipeView.c("", "", ""));
-        ing1.add(recipeView.c("", "", ""));
-        ing1.add(recipeView.c("", "", ""));
-        ing1.add(recipeView.c("", "", ""));
-        ing1.add(recipeView.c("", "", ""));
-        recipeView.loadNewRecipe("", "", ing1, 0, recipeView.createTags());
-
-
-        ArrayList ing2 = new ArrayList();
-        ing2.add(recipeView.c("", "", ""));
-        ing2.add(recipeView.c("", "", ""));
-        ing2.add(recipeView.c("", "", ""));
-        ing2.add(recipeView.c("", "", ""));
-        ing2.add(recipeView.c("", "", ""));
-        ing2.add(recipeView.c("", "", ""));
-        recipeView.loadNewRecipe("", "", ing2, 0, recipeView.createTags());
-
-        ArrayList ing3 = new ArrayList();
-        ing3.add(recipeView.c("", "", ""));
-        ing3.add(recipeView.c("", "", ""));
-        ing3.add(recipeView.c("", "", ""));
-        ing3.add(recipeView.c("", "", ""));
-        ing3.add(recipeView.c("", "", ""));
-        ing3.add(recipeView.c("", "", ""));
-        recipeView.loadNewRecipe("", "", ing3, 0, recipeView.createTags());
-
-        ArrayList ing4 = new ArrayList();
-        ing4.add(recipeView.c("", "", ""));
-        ing4.add(recipeView.c("", "", ""));
-        ing4.add(recipeView.c("", "", ""));
-        ing4.add(recipeView.c("", "", ""));
-        ing4.add(recipeView.c("", "", ""));
-        ing4.add(recipeView.c("", "", ""));
-        recipeView.loadNewRecipe("", "", ing4, 0, recipeView.createTags());
-*/
-
-    //Helper function to easily create ingredient arrays
-    public HashMap<String, ArrayList> createIngredient(String name, String metric, String qty) {
-        HashMap<String, ArrayList> ingredient = new HashMap<String, ArrayList>();
-        ingredient.put(name, new ArrayList<>(Arrays.asList(metric, qty)));
-        return ingredient;
-
-    }
 }
 

@@ -1,3 +1,4 @@
+/***
 package com.example.hungrytime.Adapter;
 
 import android.content.Context;
@@ -77,3 +78,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
 }
+
+
+ **/

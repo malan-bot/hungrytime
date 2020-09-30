@@ -1,3 +1,5 @@
+/***
+
 package com.example.Browse_Mehul_Garg;
 
 import android.os.Bundle;
@@ -14,3 +16,5 @@ public class loadingRecipes extends AppCompatActivity {
         setContentView(R.layout.activity_loading_recipes);
     }
 }
+
+ **/

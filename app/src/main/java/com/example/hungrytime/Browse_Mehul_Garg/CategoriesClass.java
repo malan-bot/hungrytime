@@ -1,4 +1,4 @@
-package com.example.Browse_Mehul_Garg;
+/**package com.example.Browse_Mehul_Garg;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,3 +40,5 @@ public class CategoriesClass extends AppCompatActivity {
         Intent view = getIntent();
     }
 }
+
+ **/

@@ -1,3 +1,5 @@
+/**
+
 package com.example.hungrytime;
 
 import android.content.ContextWrapper;
@@ -130,6 +132,8 @@ public abstract class HomeActivity extends AppCompatActivity implements TaskAdap
         * shared preferences It is handy to use
         * it is only used to know that user is still login or not
         * */
+
+/**
         new Prefs.Builder() //  this is used to initialize the preference helper
                 .setContext(this)
                 .setMode(ContextWrapper.MODE_PRIVATE)
@@ -177,6 +181,8 @@ public abstract class HomeActivity extends AppCompatActivity implements TaskAdap
         super.onResume();
         /*
         * Update the recycler view so that the newly updated task must be added to the list*/
+
+/**
         setUpAdapter();
     }
 
@@ -194,6 +200,8 @@ public abstract class HomeActivity extends AppCompatActivity implements TaskAdap
             /*
             * Snackbar is better way to notify user
             * */
+
+/**
             Snackbar snackbar = Snackbar.make(coordinatorLayout, title + " removed from to do list.", Snackbar.LENGTH_SHORT);
             snackbar.setAction("UNDO", new View.OnClickListener() {
                 @Override
@@ -213,6 +221,8 @@ public abstract class HomeActivity extends AppCompatActivity implements TaskAdap
         * Save all the task in the local storage
         * when the app is closing stage
         * */
+
+/**
         Paper.book("task").destroy();
         Paper.book("task").write("key",arrayList);
         Log.e("saving_task","asdasd");
@@ -320,3 +330,4 @@ public abstract class HomeActivity extends AppCompatActivity implements TaskAdap
 
 
 }
+**/

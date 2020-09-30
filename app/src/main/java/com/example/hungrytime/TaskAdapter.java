@@ -1,3 +1,5 @@
+/**
+
 package com.example.hungrytime.Adapter;
 
 import android.content.Context;
@@ -285,3 +287,4 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.mViewHolder> {
     }
 
 }
+**/

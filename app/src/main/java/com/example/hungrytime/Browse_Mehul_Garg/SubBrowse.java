@@ -1,3 +1,4 @@
+/***
 package com.example.Browse_Mehul_Garg;
 
 import android.content.Intent;
@@ -39,3 +40,5 @@ public class SubBrowse extends AppCompatActivity {
         Intent view = getIntent();
     }
 }
+
+ ***/

@@ -1,4 +1,4 @@
-package com.example.Browse_Mehul_Garg;
+/***package com.example.Browse_Mehul_Garg;
 
 
 import android.content.Context;
@@ -78,3 +78,4 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
     }
 }
+***/

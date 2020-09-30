@@ -1,4 +1,4 @@
-package com.example.Browse_Mehul_Garg;
+/**package com.example.Browse_Mehul_Garg;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -66,3 +66,4 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
     }
 
 }
+**/

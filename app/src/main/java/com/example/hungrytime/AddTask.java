@@ -1,4 +1,4 @@
-package com.example.hungrytime;
+/**package com.example.hungrytime;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -37,6 +37,8 @@ public class AddTask extends AppCompatActivity {
     /*
     * New task is added using a dialog box
     * */
+
+/**
     TextInputEditText edSubTaskDialog;
     TextInputEditText edSubTaskDialogQty;
 
@@ -121,6 +123,10 @@ public class AddTask extends AppCompatActivity {
 
     /*
     * Text Exceptions*/
+
+
+
+/***
     private boolean validations() {
         if(edTaskName.getText().toString().equals("")){
             edTaskName.setError("Can't be empty");
@@ -172,6 +178,8 @@ public class AddTask extends AppCompatActivity {
         * then set the text put in the dialog box to the
         * edit text in the view */
 
+
+/***
         View child = getLayoutInflater().inflate(R.layout.snippet_add_sub_task, null);
         LinearLayout linTemp = (LinearLayout) child;
         EditText edTemp = (EditText) linTemp.getChildAt(1);
@@ -268,3 +276,5 @@ public class AddTask extends AppCompatActivity {
     }
 
 }
+
+**/

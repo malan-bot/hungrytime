@@ -1,3 +1,6 @@
+/**
+
+
 package com.example.hungrytime.Helper;
 
 import android.graphics.Canvas;
@@ -65,3 +68,4 @@ public class TasksRclyViewTouchHelper extends ItemTouchHelper.SimpleCallback {
         return super.convertToAbsoluteDirection(flags, layoutDirection);
     }
 }
+ **/
