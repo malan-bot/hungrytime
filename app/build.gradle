@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.example.hungrytime"
         minSdkVersion 19
         multiDexEnabled true
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -45,14 +45,5 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-
-
-
-    implementation 'com.google.android.material:material:1.1.0-alpha04'
-    implementation 'io.paperdb:paperdb:2.6'
-    implementation 'com.pixplicity.easyprefs:library:1.9.0'
-
-    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
-    implementation 'net.igenius:customcheckbox:1.3'
 
 }
