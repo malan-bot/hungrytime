@@ -26,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
 
 
-        /*to Test Malan's Activity.. please run the following block of code:
+        //*to Test Malan's Activity.. please run the following block of code:
         //Some tags you may want to try: Alcohol, Juice, Smoothie, Pineapple, Banana, Coconut, Dairy Free.
         RecipeView recipeView = new RecipeView(recyclerView, this);
         recipeView.readRecipesByTag("Alcohol");
         //*/
 
-       //*To test Juwons Activity.. Please run this code:
+       /*To test Juwons Activity.. Please run this code:
         Schedule schedule = initScheduleData();
         initRecyclerView(schedule.getScheduleInDays());
         //*/
