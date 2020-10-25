@@ -1,4 +1,4 @@
-/**
+/***
 
 package com.example.hungrytime;
 
@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.hungrytime.Adapter.TaskAdapter;
+import com.example.hungrytime.CategoriesAdapter.TaskAdapter;
 import com.example.hungrytime.Helper.TaskRclyViewTouchHelperListener;
 import com.example.hungrytime.ModelClass.Task;
 import com.example.hungrytime.ModelClass.TaskHolder;

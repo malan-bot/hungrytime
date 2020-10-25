@@ -1,5 +1,5 @@
 /***
-package com.example.hungrytime.Adapter;
+package com.example.hungrytime.CategoriesAdapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import com.example.hungrytime.HomeActivity;
 import com.example.hungrytime.R;
 
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class MyAdapter extends RecyclerView.CategoriesAdapter<MyAdapter.MyViewHolder> {
 
     String data1[], data2[];
     int images[];
@@ -78,6 +78,5 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
 }
-
-
  **/
+
