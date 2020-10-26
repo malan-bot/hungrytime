@@ -7,13 +7,4 @@
     <color name="white">#FFFFFF</color>
     <color name="colorsp">#793434</color>
 
-    <color name="red">#b92e34</color>
-
-    <color name="black">#000</color>
-    <color name="grey">#C0C0C0</color>
-    <color name="invis">#00F0EDED</color>
-    <color name="green">#4CAF50</color>
-    <color name="purple">#673AB7</color>
-    <color name="light_purple">#A98DE4</color>
-
 </resources>

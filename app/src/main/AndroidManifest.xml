@@ -12,13 +12,27 @@
         <activity android:name=".LoginActivity"/>
         <activity android:name=".UpdatePassword" />
         <activity android:name=".PasswordActivity" />
-        <activity android:name=".SecondActivity" />
+
         <activity android:name=".ProfileActivity" />
         <activity android:name=".UpdateProfile" />
         <activity android:name=".UpdateEmail" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".SplashScreen">
+        <!--To Run Mohammed's code, please copy + paste the following two tags in-place of the two tags below..
+            <activity android:name=".MainActivity"/>
+            <activity android:name=".SplashScreen"> -->
+        <activity android:name=".SplashScreen"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".LoadingRecipes"
+            android:parentActivityName=".Categories"></activity>
+        <activity android:name=".Categories" >
+
+
+
+
+
+        <!--To Test Juwon & Malan's code, please copy + paste the following two tags in-place of the two tags above..
+                <activity android:name=".SplashScreen"/>
+                <activity android:name=".MainActivity"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
