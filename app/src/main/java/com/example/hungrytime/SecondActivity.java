@@ -1,4 +1,4 @@
-/***package com.example.hungrytime;
+package com.example.hungrytime;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,4 +64,3 @@ public class SecondActivity extends AppCompatActivity {
     }
 
 }
- ***/

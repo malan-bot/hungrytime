@@ -4,32 +4,30 @@ package com.example.hungrytime;
 import android.provider.ContactsContract;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class Recipe {
-    private String name;
+    private String description;
     private String imageUrl;
-    private HashMap<String, ArrayList> ingredientsHashMap;
-    private ArrayList<Ingredient> ingredients;
+    private HashMap<String, ArrayList> ingredients;
     private long likeCount;
     private ArrayList<String> tags;
 
-    public Recipe(String name,
+    public Recipe(String description,
                   String imageUrl,
                   HashMap<String,ArrayList> ingredients,
                   long likeCount,
                   ArrayList<String> tags){
 
-        this.name= name;
+        this.description = description;
         this.imageUrl = imageUrl;
-        this.ingredientsHashMap = ingredients;
+        this.ingredients = ingredients;
         this.likeCount = likeCount;
         this.tags = tags;
     }
 
     public void setDescription(String description) {
-        this.name = name;
+        this.description = description;
     }
 
     public void setImageUrl(String imageUrl) {
@@ -37,7 +35,7 @@ public class Recipe {
     }
 
     public void setIngredients(HashMap<String, ArrayList> ingredients) {
-        this.ingredientsHashMap = ingredients;
+        this.ingredients = ingredients;
     }
 
     public void setLikeCount(int likeCount) {
@@ -50,34 +48,18 @@ public class Recipe {
 
     //test constructor 1
     public Recipe(String description){
-        this.name = name;
+        this.description = description;
     }
 
     //test constructor 2
-    public Recipe(String name, HashMap<String, ArrayList> ingredients){
-        this.name = name;
-        this.ingredientsHashMap = ingredients;
-    }
-
-    //test constructor 3: for hardcoding in Recipes w/ ingredients
-    public Recipe(String name, ArrayList<Ingredient> ingredients){
-        this.name = name;
+    public Recipe(String description, HashMap<String, ArrayList> ingredients){
+        this.description = description;
         this.ingredients = ingredients;
     }
-
-    public Recipe(String name, String imageUrl, ArrayList<Ingredient> ingredients, long likeCount, ArrayList<String> tags) {
-
-        this.name = name;
-        this.imageUrl = imageUrl;
-        this.ingredients = ingredients;
-        this.likeCount = likeCount;
-        this.tags = tags;
-    }
-
 
 
     public String getDescription() {
-        return name;
+        return description;
     }
 
     public String getImageUrl() {
@@ -89,13 +71,10 @@ public class Recipe {
 
     //note: switch(metric)
     //          case cup: don't parseInt
-    public HashMap<String, ArrayList> getIngredientsHashMap(){
-        return ingredientsHashMap;
+    public HashMap<String, ArrayList> getIngredients(){
+        return ingredients;
     };
 
-    public ArrayList<Ingredient> getIngredients(){
-        return this.ingredients;
-    }
 
     public long getLikeCount() {
         return likeCount;
@@ -109,7 +88,7 @@ public class Recipe {
     @Override
     public String toString() {
         return "Recipe{" +
-                "description='" + name + '\'' +
+                "description='" + description + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", ingredients=" + ingredients +
                 ", likeCount=" + likeCount +
