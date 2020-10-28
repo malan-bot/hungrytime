@@ -21,10 +21,11 @@
             <activity android:name=".MainActivity"/>
             <activity android:name=".SplashScreen"> -->
         <activity android:name=".SplashScreen"/>
-        <activity android:name=".MainActivity"/>
         <activity android:name=".LoadingRecipes"
             android:parentActivityName=".Categories"></activity>
-        <activity android:name=".Categories" >
+        <activity android:name=".Categories"/>
+        <activity android:name=".MainActivity">
+
 
 
 

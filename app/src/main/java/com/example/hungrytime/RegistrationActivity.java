@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -37,6 +40,8 @@ public class RegistrationActivity extends AppCompatActivity {
     TextView tvUserLogin;
     String name, email, Password;
     private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db;
+    private CollectionReference usersRef;
 
     //////////////////////////////////////////////////////////////////////////
     @Override
@@ -54,6 +59,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
         firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        usersRef = db.collection("Users");
 
         /////
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +77,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 sendEmailVerification();
                                 sendUserData();
+                                //usersRef.document(firebaseAuth.getUid());
                             } else {
                                 Toast.makeText(RegistrationActivity.this,"Registration Failed",Toast.LENGTH_SHORT).show();
                             }
@@ -140,8 +148,9 @@ public class RegistrationActivity extends AppCompatActivity {
     public void sendUserData(){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
+        Log.d("user id is: ", myRef.getKey());
         UserProfile userProfile = new UserProfile(name);
         myRef.setValue(userProfile);
-
     }
+
 }

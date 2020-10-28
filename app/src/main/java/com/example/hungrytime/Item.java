@@ -8,11 +8,13 @@ public class Item {
     private String quantity;
     private boolean expanded;
 
-    public Item(String item, ArrayList<Recipe> recipes, String quantity, boolean expanded) {
+    public Item(String item, ArrayList<String> recipes, String quantity) {
         this.item = item;
+        this.recipes = recipes;
         this.quantity = quantity;
         this.expanded = false;
     }
+
 
     public String getItem() {
         return item;
@@ -50,7 +52,7 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "item='" + item + '\'' +
-                ", recipes=" + recipes.toString() + '\'' +
+                ", recipes=" + recipes + '\'' +
                 ", quantity='" + quantity + '\'' +
                 ", expanded=" + expanded +
                 '}';
