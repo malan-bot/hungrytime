@@ -20,15 +20,14 @@
         <!--To Run Mohammed's code, please copy + paste the following two tags in-place of the two tags below..
             <activity android:name=".MainActivity"/>
             <activity android:name=".SplashScreen"> -->
-        <activity android:name=".SplashScreen"/>
         <activity android:name=".MainActivity"/>
+        <activity android:name=".SplashScreen"/>
         <activity android:name=".LoadingRecipes"
             android:parentActivityName=".Categories"></activity>
-        <activity android:name=".Categories" >
+        <activity android:name=".Categories"/>
 
-
-
-
+        <activity android:name=".ScheduleActivity"/>
+        <activity android:name=".ShoppingListActivity">
 
         <!--To Test Juwon & Malan's code, please copy + paste the following two tags in-place of the two tags above..
                 <activity android:name=".SplashScreen"/>
