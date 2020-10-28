@@ -17,6 +17,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.concurrent.Future;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText etName, etPassword;
     private Button btnLogin;
@@ -84,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void validate (String userName, String userPassword){
         firebaseAuth.signInWithEmailAndPassword(userName,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
