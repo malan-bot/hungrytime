@@ -16,14 +16,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.concurrent.Future;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etName, etPassword;
     private Button btnLogin;
     private TextView tvRegister, tvForgotPassword;
     private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference usersRef = db.collection("Users");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if (user != null){
             finish();
-            startActivity(new Intent(LoginActivity.this,SecondActivity.class));
+
+            //startActivity(new Intent(LoginActivity.this,HomeActivity.class));
         }
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
     private void validate (String userName, String userPassword){
         firebaseAuth.signInWithEmailAndPassword(userName,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -111,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         Boolean emailRegistered = firebaseUser.isEmailVerified();
 
         if(emailRegistered){
-            startActivity(new Intent(LoginActivity.this,SecondActivity.class));
+            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
         } else {
             Toast.makeText(LoginActivity.this,"Verify your email to login",Toast.LENGTH_SHORT).show();
             firebaseAuth.signOut();

@@ -13,7 +13,6 @@ public class Schedule {
     private String scheduleId;
     private HashMap<String, HashMap<String, Recipe>> schedule;
 
-
     //We use a nested HashMap in order to ensure that only 1 of each recipe can be added to any given day.
     //We can enforce this with HashMaps as they require their keys to be unique, in our case keys = recipe names or ID.
     public Schedule() {

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class RecipeView {
@@ -27,6 +28,7 @@ public class RecipeView {
     public final String TAG = "RecipesView: ";
     public static RecipeViewAdapter adapter;
     private Context context;
+    private static Schedule schedule;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference recipeRef = db.collection("Recipes");
@@ -35,6 +37,11 @@ public class RecipeView {
         this.context = context;
         recipeRecyclerView = view;
         adapter = new RecipeViewAdapter(context);
+        recipes = new ArrayList<Recipe>();
+    }
+
+    //Use this when you just want access to the recipes
+    public RecipeView(){
         recipes = new ArrayList<Recipe>();
     }
 
@@ -73,6 +80,7 @@ public class RecipeView {
         recipeRef.document(name).set(recipe);
     }
 
+
     public void readRecipesByTag(String item){
 
         recipeRef.whereArrayContains("tags", item).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -87,7 +95,8 @@ public class RecipeView {
                     ArrayList<HashMap<String, ArrayList>> fetchedIngredients = (ArrayList<HashMap<String, ArrayList>>) doc.get("Ingredients");
 
                     //ingredients stored here
-                    HashMap<String, ArrayList> ingredients = new HashMap<String, ArrayList>();
+                    //HashMap<String, ArrayList> ingredients = new HashMap<String, ArrayList>();
+                    ArrayList<Ingredient> ingredientsTest = new ArrayList<Ingredient>();
                     //Parses through the fetched ingredients arraylist
                     for (HashMap<String, ArrayList> set : fetchedIngredients) {
                         Iterator entries = set.entrySet().iterator();
@@ -96,10 +105,11 @@ public class RecipeView {
                             String item = (String) entry.getValue();
                             entry = (Map.Entry) entries.next();
                             ArrayList qty = (ArrayList) entry.getValue();
-                            ingredients.put(item, qty);
+                            //ingredients.put(item, qty);
+                            ingredientsTest.add(new Ingredient(item, (String)qty.get(0), (String)qty.get(1)));
                         }
                     }
-                    Recipe recipe = new Recipe((String) doc.get("Description"), (String) doc.get("Image"), ingredients, (long) doc.get("likeCount"), (ArrayList<String>) doc.get("tags"));
+                    Recipe recipe = new Recipe((String) doc.get("Description"), (String) doc.get("Image"), ingredientsTest, (long) doc.get("likeCount"), (ArrayList<String>) doc.get("tags"));
                     recipes.add(recipe);
                 }
             }

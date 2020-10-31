@@ -1,5 +1,6 @@
 package com.example.hungrytime;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,10 @@ import java.util.List;
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.RecipeVH> {
 
     ArrayList<Day> scheduledRecipes;
+    Context context;
 
-    public ScheduleAdapter(ArrayList<Day> schedule) {
-        this.scheduledRecipes = schedule;
+    public ScheduleAdapter(Context context) {
+        this.context = context;
     }
 
     @NonNull
@@ -39,9 +41,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Recipe
 
         boolean isExpanded = scheduledRecipes.get(position).isExpanded();
         holder.expandableLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
-
-
     }
+
+    public void setSchedule(Schedule schedule){
+        this.scheduledRecipes = schedule.getScheduleInDays();
+    }
+
 
     @Override
     public int getItemCount() {

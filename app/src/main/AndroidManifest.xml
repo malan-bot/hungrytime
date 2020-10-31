@@ -9,31 +9,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".AddRecipesActivity" />
+
+        <!--  SPRINT TWO ACTIVITIES  -->
+        <activity android:name=".SplashScreen"/>
+        <activity android:name=".LoginActivity"/>
         <activity android:name=".UpdatePassword" />
         <activity android:name=".PasswordActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".UpdateProfile" />
         <activity android:name=".UpdateEmail" />
         <activity android:name=".RegistrationActivity" />
-        <!--
-To Run Mohammed's code, please copy + paste the following two tags in-place of the two tags below..
-            <activity android:name=".MainActivity"/>
-            <activity android:name=".SplashScreen">
-        -->
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".MainActivity" />
-        <activity
-            android:name=".LoadingRecipes"
-            android:parentActivityName=".Categories" />
-        <activity android:name=".Categories">
+        <activity android:name=".RecipeInfoActivity"/>
+        <activity android:name=".ScheduleActivity"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".LoadingRecipes"
+            android:parentActivityName=".Categories"></activity>
+        <activity android:name=".Categories"/>
+        <activity android:name=".ShoppingListActivity"/>
+        <activity android:name=".HomeActivity">
 
-            <!--
-            To Test Juwon & Malan's code, please copy + paste the following two tags in-place of the two tags above..
-                <activity android:name=".SplashScreen"/>
-                <activity android:name=".MainActivity">
-            -->
+    <!-- TO TEST MOHAMMEDS USER ACTIVITIES which are meant to link to our activities. This may be buggy..
+
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".UpdatePassword" />
+        <activity android:name=".PasswordActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".UpdateProfile" />
+        <activity android:name=".UpdateEmail" />
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".RecipeInfoActivity"/>
+        <activity android:name=".ScheduleActivity"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".LoadingRecipes"
+            android:parentActivityName=".Categories"></activity>
+        <activity android:name=".Categories"/>
+
+        <activity android:name=".ShoppingListActivity"/>
+        <activity android:name=".HomeActivity"/>
+            <activity android:name=".SplashScreen">
+     -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,6 +1,7 @@
 package com.example.hungrytime;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,15 +41,17 @@ public class RecipeViewAdapter extends RecyclerView.Adapter<RecipeViewAdapter.Vi
         holder.recipeName.setText(recipes.get(position).getDescription());
         holder.parent.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){
-                Toast.makeText(context, recipes.get(position).getDescription() + " Selected", Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                // We don't have a reference id so I will use description as reference?
+                Intent intent = new Intent(context, RecipeInfoActivity.class);
+                intent.putExtra("description", recipes.get(position).getDescription());
+                context.startActivity(intent);
             }
         });
         Glide.with(context)
                 .asBitmap()
                 .load(recipes.get(position).getImageUrl())
                 .into(holder.image);
-
     }
 
     @Override
